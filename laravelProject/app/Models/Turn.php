@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Turn extends Model
 {
     use HasFactory;
-    public function turn(){
-         return $this->hasOne(Turn::class);
+     public function user(){
+         return $this->belongsTo(User::class);
      }
+     
 }
