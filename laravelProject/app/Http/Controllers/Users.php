@@ -10,7 +10,6 @@ class Users extends Controller
 {
     public function index(){
         $users = User::with('turn')->get();
-        // $users = Turn::all();
 
         if($users->count() > 0){
             return response()->json($users);
