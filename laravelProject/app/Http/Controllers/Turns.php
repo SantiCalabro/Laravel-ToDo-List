@@ -9,11 +9,6 @@ use App\Models\Turn;
 class Turns extends Controller
 {
     public function update(Request $request, $id){
-        //  $user= User::with('turn')->find($id);
-        // $newTurn = $request->input('turn');
-        // $user->turn = $newTurn;
-        // $user->save();
-
         $user = User::find($id);
         if(!$user){
             return response()->json(['message'=>'No user found']);

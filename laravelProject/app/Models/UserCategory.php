@@ -9,8 +9,11 @@ class UserCategory extends Model
 {
     use HasFactory;
     protected $table = 'user_category'; //Sino automáticamente se convierte en user_categories y da error!!!
-
-    public function user(){
+    protected $fillable = [
+        'category'
+    ];
+    public $timestamps = false;
+     public function user(){
          return $this->belongsTo(User::class);
      }
 }

@@ -24,7 +24,7 @@ class User extends Model
      }
 
    
-    public function categories(){
+    public function category(){
         return $this->hasOne(UserCategory::class);   
     }
 }

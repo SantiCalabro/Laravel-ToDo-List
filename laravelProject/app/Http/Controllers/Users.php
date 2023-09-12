@@ -5,17 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Turn;
+use App\Models\UserCategory;
 
 class Users extends Controller
 
 {
     public function index(){
-        $users = User::with('turn', 'categories')->get();
+        $users = User::with('turn', 'category')->get();
 
         if($users->count() > 0){
             return response()->json($users);
         }else{
-            return response()->json(['messaje' => 'No users']);
+            return response()->json(['message' => 'No users']);
         }
     }
 
@@ -36,11 +37,19 @@ class Users extends Controller
             'lastname'=>$request->input('lastname')
         ]);
         
+
         if($request->has('picture')){
             $user->picture = $request->input('picture');
         }
-        
-        return response()->json($request);
+
+        $user->turn()->create([
+            'turn'=> $request ->input('turn')
+        ]);
+        $user->category()->create([
+            'category'=> $request ->input('category') 
+        ]);
+
+        return response()->json($user);
         
     }
 }
