@@ -22,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/users', [Users::class, 'index']);
 Route::patch('/users/{id}',[Turns::class, 'update']);
+Route::get('/turns',[Turns::class, 'show']);
+Route::post('/user',[Users::class, 'store']);

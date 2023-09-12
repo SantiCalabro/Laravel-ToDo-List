@@ -15,13 +15,14 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('lastname');
             $table->string('username');
             $table->string('picture')->default('https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png');
             $table->boolean('isAdmin')->default(false);
-            $table->enum('type', ['tattoo', 'piercing', 'trenzas', 'caja']);
-            $table->enum('status', ['active', 'paused', 'blocked']);
+            $table->enum('status', ['active', 'paused', 'blocked'])->default('active');
             $table->string('email');
-            $table->timestamps();
+        
         });
     }
 

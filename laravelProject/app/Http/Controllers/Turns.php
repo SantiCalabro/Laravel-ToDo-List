@@ -25,4 +25,17 @@ class Turns extends Controller
 
       return response()->json($user);
     }
+
+    public function show(){
+        $turns = Turn::all();
+        if($turns->count()>0){
+            $turnsArray = [];
+            foreach($turns as $turn){
+                $turnsArray[]= $turn->turn;
+            }
+            return response()->json(['turns'=>$turnsArray]);
+        }else{
+            return response()->json(['message'=> 'no turns to show']);
+        }
+    }
 }
