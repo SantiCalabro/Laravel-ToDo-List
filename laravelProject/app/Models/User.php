@@ -27,4 +27,8 @@ class User extends Model
     public function category(){
         return $this->hasOne(UserCategory::class);   
     }
+
+    public function products(){
+        return $this -> belongsToMany(Product::class, 'user_product');
+    }
 }

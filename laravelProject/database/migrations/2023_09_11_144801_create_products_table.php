@@ -17,7 +17,10 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('description',1500);
-            $table->timestamps();
+            $table->integer('stock');
+            $table->boolean('status')->default(true);
+            $table->unsignedBigInteger('user_id');
+            // $table->timestamps();
         });
     }
 

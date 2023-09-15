@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Turn;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class Turns extends Controller
 {
@@ -13,7 +15,7 @@ class Turns extends Controller
         if(!$user){
             return response()->json(['message'=>'No user found']);
         };
-
+        $turns = Turn::all();
         $newTurn = $request->input('turn');
         $user->turn->turn = $newTurn;
         $user->turn->save();

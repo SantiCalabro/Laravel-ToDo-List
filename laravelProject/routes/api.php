@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Users;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Turns;
 
 /*
@@ -24,3 +25,5 @@ Route::get('/users', [Users::class, 'index']);
 Route::patch('/users/{id}',[Turns::class, 'update']);
 Route::get('/turns',[Turns::class, 'show']);
 Route::post('/user',[Users::class, 'store']);
+Route::post('/product/{user_id}', [ProductController::class, 'store']);
+Route::get('/products',[ProductController::class, 'show']);
