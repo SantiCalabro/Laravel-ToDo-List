@@ -22,8 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/users', [Users::class, 'index']);
-Route::patch('/users/{id}',[Turns::class, 'update']);
+Route::patch('/turn/{id}',[Turns::class, 'update']);
+Route::patch('/users/{id}',[Users::class, 'update']);
 Route::get('/turns',[Turns::class, 'show']);
 Route::post('/user',[Users::class, 'store']);
 Route::post('/product/{user_id}', [ProductController::class, 'store']);
 Route::get('/products',[ProductController::class, 'show']);
+Route::get('/users/{category}',[Users::class, 'getUsersFromCategory']);

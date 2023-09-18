@@ -57,7 +57,33 @@ class Users extends Controller
     
             return response()->json($user);
         }
+    }
 
-        
+    public function getUsersFromCategory($category){
+        $users = User::with('turn')->whereHas('category', function($query) use($category){
+            //Usamos whereHas para traer la tabla asociada. Sino con "where" sería suficiente
+            $query->where('category', $category);})->get();
+//Cuando se trabaja con funciones anónimas o closures en PHP, a veces se necesita "importar" el parámetro
+//para que lo pueda tomar luego. En esos casos al lado de function(var) agregamos use(parámetro de la
+//función externa)
+            return response()->json($users);
+    }
+
+
+    public function update(Request $request, $user_id){
+        $user = User::find($user_id);
+        if(!$user){
+            return response()->json(['message'=> 'User not found']);
+        }else{
+            if($request->input('isAdmin')){
+                $user->isAdmin = $request->input('isAdmin');
+                $user->save();
+                return response()->json(['message'=>'User permissions have been updated']);
+            }else{
+                $user ->update($request->all());
+                $user->save();
+                return response()->json(['message'=>'User updated']);
+            };
+        }
     }
 }
